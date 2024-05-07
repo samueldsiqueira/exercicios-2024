@@ -12,10 +12,20 @@ class Paper
   public $title;
   public $type;
   public $authors;
-
-
-  public function __construct($id, $title, $type, $authors = [])
+  /**
+   * Summary of __construct
+   * @param string $id number in web card
+   * @param string $title publication title
+   * @param string $type  type of publications
+   * @param array $authors name of authors
+   */
+  public function __construct($id, $title, $type, array $authors)
   {
+    $this->id = $id;
+    $this->title = $title;
+    $this->type = $type;
+    $this->authors = $authors;
+
   }
 
 }
