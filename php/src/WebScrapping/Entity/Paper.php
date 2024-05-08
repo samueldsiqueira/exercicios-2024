@@ -14,7 +14,7 @@ class Paper
   public $authors;
   /**
    * Summary of __construct
-   * @param string $id number in web card
+   * @param int $id number in web card
    * @param string $title publication title
    * @param string $type  type of publications
    * @param array $authors name of authors
