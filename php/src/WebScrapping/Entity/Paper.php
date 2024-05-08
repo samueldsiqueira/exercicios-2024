@@ -19,7 +19,7 @@ class Paper
    * @param string $type  type of publications
    * @param array $authors name of authors
    */
-  public function __construct($id, $title, $type, array $authors)
+  public function __construct($id, $title, $type, $authors = [])
   {
     $this->id = $id;
     $this->title = $title;
@@ -27,5 +27,24 @@ class Paper
     $this->authors = $authors;
 
   }
+
+  public function getId(): int
+  {
+    return $this->id;
+  }
+  public function getTitle(): string
+  {
+    return $this->title;
+  }
+  public function getType(): string
+  {
+    return $this->type;
+  }
+  public function getAuthors(): array
+  {
+    return $this->authors;
+  }
+
+
 
 }
