@@ -2,22 +2,40 @@
 
 namespace Chuva\Php\WebScrapping;
 
+use DOMDocument;
+
 /**
- * Runner for the Webscrapping exercice.
+ * Does the scrapping of a webpage.
  */
-class Main {
+class Main
+{
+    public static function run()
+    {
+        $scraper = new Scrapper();
+        try {
+            // Tente carregar o arquivo HTML
+            $html = file_get_contents(__DIR__ . '/../../assets/origin.html');
+            if ($html === false) {
+                throw new \Exception("Failed to load HTML file.");
+            }
 
-  /**
-   * Main runner, instantiates a Scrapper and runs.
-   */
-  public static function run(): void {
-    $dom = new \DOMDocument('1.0', 'utf-8');
-    $dom->loadHTMLFile(__DIR__ . '/../../assets/origin.html');
+            // Crie um novo objeto DOMDocument
+            $dom = new DOMDocument();
 
-    $data = (new Scrapper())->scrap($dom);
+            // Carregue o HTML no DOMDocument, suprimindo os erros
+            // para evitar que eles sejam exibidos
+            @$dom->loadHTML($html);
 
-    // Write your logic to save the output file bellow.
-    print_r($data);
-  }
+            // Inicie a raspagem
+            $papers = $scraper->scrap($dom);
 
+            // Processamento adicional, se necessário
+
+            // Saída dos resultados
+            print_r($papers);
+        } catch (\Exception $e) {
+            // Lidar com a exceção
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }
